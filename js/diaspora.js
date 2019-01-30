@@ -479,7 +479,12 @@ $(function() {
                 gitalk.render('gitalk-container')
                 Diaspora.loaded();
                 return false;
+				break;
+			//statehere
+			case (tag.indexOf('statehere') != -1):
+               alert("kkkk");
                 break;
+            // qrcode
             default:
                 return true;
                 break;
