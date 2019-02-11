@@ -37,7 +37,18 @@ body.mu .image-logo {background-color:black;}
 #post0 h2 + p {color:#fff;font-size:14px;margin-top:30px;}
 .post {margin:100px auto 0;width:1200px;position:relative;}
 .post > a {display:inline-block;width:680px;height:440px;overflow:hidden;position:relative;z-index:3;}
+.post.preview > a {width:375px;height:auto;margin-left: 165px;}
+
+.post.preview > a {display:inline-block;width:375px;height:667px;overflow:hidden;position:relative;z-index:3;}
+.post > a.showewm, .post .showewm a {cursor: default;}
+.post .qrcode {position: absolute; top: 20%; left: 50%; margin-left: -20%; width: 40%; transition: all .3s; opacity: 0;}
+.post .cover {transition: all .2s .1s;}
+.post.active .qrcode {opacity: 1;}
+.post.active .cover {filter: blur(5px)}
+
+
 .else {position:absolute;background:#fff;text-align:left;top:20px;height:398px;width:498px;border:1px solid #eaeaea;}
+.post.preview .else {top:50%;margin-top: -199px;}
 .post:nth-child(odd) {text-align:left;}
 .post:nth-child(even) {text-align:right;}
 .post:nth-child(odd) .else {left:660px;}
@@ -220,7 +231,9 @@ pre .keyword,pre .javascript .function {color:#cc99cc;}
   #post0 h2 {font-size:24px;}
   .post {width:900px;}
   .post > a {width:480px;height:310px;}
+  .post.preview > a {width:300px;height:auto;margin-left: 150px;}
   .else {top:10px;width:420px;height:290px;}
+  .post.preview .else {top:50%;margin-top: -145px;}
   .post:nth-child(odd) .else {left:450px;}
   .post:nth-child(even) .else {right:450px;}
   .else p:first-child {font-size:12px;margin:50px 0 0 60px;}

@@ -378,13 +378,20 @@ $(function() {
                 $('.icon-pause').removeClass('icon-pause').addClass('icon-play')
                 break;
             // history state
-            case (tag.indexOf('cover') != -1):
+			case (tag.indexOf('cover') != -1):
+				if ($(e.target).parents('.post:eq(0)').hasClass('preview')) return false;
                 Diaspora.HS($(e.target).parent(), 'push')
                 return false;
                 break;
             // history state
             case (tag.indexOf('posttitle') != -1):
                 Diaspora.HS($(e.target), 'push')
+                return false;
+                break;
+            // Post preview
+            case (tag.indexOf('postpreview') != -1):
+                console.log(212);
+				
                 return false;
                 break;
             // prev, next post
@@ -489,12 +496,27 @@ $(function() {
                 return true;
                 break;
         }
-    })
+	})
+	
+
+	$('.showewm').mouseenter(e => {
+		$(e.target).parents(".post").addClass('active');
+		// $(e.target).parents(".post").find(".cover1").css("filter", "blur(5px)");
+		// $(e.target).parents(".post").find(".qrcode").fadeIn(300);
+
+		console.log(11);
+		// $('.qrcode').toggle(300);
+    }).mouseleave(e => {
+		$(e.target).parents(".post").removeClass('active');
+		// $(e.target).parents(".post").find(".cover1").css("filter", "blur(0)");
+		// $(e.target).parents(".post").find(".qrcode").fadeOut(300);
+	})
+
     // 是否自动展开评论
     comment = $("#gitalk-container");
     if (comment.data('ae') == true){
         comment.click();
     }
-    console.log("%c Github %c","background:#24272A; color:#ffffff","","https://github.com/Fechin/hexo-theme-diaspora")
+    console.log("%c Gi thub %c","background:#24272A; color:#ffffff","","https://github.com/Fechin/hexo-theme-diaspora")
 })
 
