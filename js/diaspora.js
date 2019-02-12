@@ -339,8 +339,14 @@ $(function() {
                     } else {
                         $('#pager').remove()
                     }
-                    var tempScrollTop = $(window).scrollTop();
-                    $('#primary').append($(data).find('.post'))
+					var tempScrollTop = $(window).scrollTop();
+					var _post = $(data).find('.post');
+					$('#primary').append(_post);
+					_post.find('.showmask').mouseenter(e =>{
+						$(e.target).parents(".post").addClass('active');
+					}).mouseleave(e => {
+						$(e.target).parents(".post").removeClass('active');
+					})
                     $(window).scrollTop(tempScrollTop + 100);
                     Diaspora.loaded()
                     $('html,body').animate({ scrollTop: tempScrollTop + 400 }, 500);
@@ -383,6 +389,9 @@ $(function() {
                 Diaspora.HS($(e.target).parent(), 'push')
                 return false;
                 break;
+			case (tag.indexOf('qrcode') != -1):
+                return false;
+                break;
             // history state
             case (tag.indexOf('posttitle') != -1):
                 Diaspora.HS($(e.target), 'push')
@@ -391,7 +400,7 @@ $(function() {
             // Post preview
             case (tag.indexOf('postpreview') != -1):
                 console.log(212);
-				
+				// qrcodeShow();
                 return false;
                 break;
             // prev, next post
@@ -498,20 +507,23 @@ $(function() {
         }
 	})
 	
-
-	$('.showewm').mouseenter(e => {
+// function qrcodeShow(){
+	$('.showmask').mouseenter(e => {
 		$(e.target).parents(".post").addClass('active');
-		// $(e.target).parents(".post").find(".cover1").css("filter", "blur(5px)");
-		// $(e.target).parents(".post").find(".qrcode").fadeIn(300);
-
-		console.log(11);
-		// $('.qrcode').toggle(300);
     }).mouseleave(e => {
 		$(e.target).parents(".post").removeClass('active');
-		// $(e.target).parents(".post").find(".cover1").css("filter", "blur(0)");
-		// $(e.target).parents(".post").find(".qrcode").fadeOut(300);
 	})
-
+// }
+	// $('#primary').mouseover(e => {
+	// 	if ($(e.target).hasClass('showmask')) {
+	// 		$(e.target).parent().addClass('active');
+	// 	}
+	// }).mouseout(e => {
+	// 	if ($(e.target).hasClass('showmask')) {
+	// 		$(e.target).parent().removeClass('active');
+	// 	}
+	// })
+ 
     // 是否自动展开评论
     comment = $("#gitalk-container");
     if (comment.data('ae') == true){
